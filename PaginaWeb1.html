@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA Aconcagua - Soluciones de Inteligencia Artificial en Chile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            dark: '#0f172a',
+                            light: '#1e293b',
+                        },
+                        accent: {
+                            blue: '#38bdf8',
+                            lime: '#bef264',
+                        },
+                    },
+                    animation: {
+                        'float': 'float 3s ease-in-out infinite',
+                        'pulse-slow': 'pulse 5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-text {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(90deg, #38bdf8, #bef264);
+        }
+       
+        .gradient-bg {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+       
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+        }
+       
+        .toggle-checkbox:checked {
+            right: 0;
+            background-color: #38bdf8;
+        }
+       
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #0f172a;
+        }
+       
+        input, textarea {
+            transition: all 0.3s;
+        }
+       
+        input:focus, textarea:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.3);
+        }
+       
+        .scroll-down {
+            animation: bounce 2s infinite;
+        }
+       
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-20px);}
+            60% {transform: translateY(-10px);}
+        }
+
+
+        /* New AI features animation */
+        .ai-feature {
+            transition: all 0.4s ease;
+        }
+        .ai-feature:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px -5px rgba(56, 189, 248, 0.3);
+        }
+       
+        .logo-container {
+            height: 40px;
+            display: flex;
+            align-items: center;
+        }
+       
+        .logo-img {
+            height: 100%;
+            width: auto;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body class="dark:bg-gray-900 dark:text-gray-100 bg-gray-50 text-gray-900 transition-colors duration-300">
+    <!-- Header/Navbar -->
+    <header class="gradient-bg sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="logo-container">
+                        <img src="https://i.postimg.cc/qvzrrDB7/logo.jpg" alt="IA Aconcagua Logo" class="logo-img">
+                    </div>
+                    <span class="text-xl font-bold hidden sm:inline">IA <span class="gradient-text">Aconcagua</span></span>
+                </div>
+               
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#inicio" class="hover:text-accent-blue transition">Inicio</a>
+                    <a href="#nosotros" class="hover:text-accent-blue transition">Quiénes Somos</a>
+                    <a href="#servicios" class="hover:text-accent-blue transition">Servicios</a>
+                    <a href="#tecnologia" class="hover:text-accent-blue transition">Tecnología 2025</a>
+                    <a href="#precios" class="hover:text-accent-blue transition">Comparativa</a>
+                    <a href="#contacto" class="hover:text-accent-blue transition">Contacto</a>
+                </div>
+               
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center">
+                        <span class="mr-2 text-sm hidden sm:inline">Modo</span>
+                        <div class="relative inline-block w-12 mr-2 align-middle select-none">
+                            <input type="checkbox" id="toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
+                            <label for="toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                        </div>
+                    </div>
+                    <button class="md:hidden focus:outline-none" id="menu-btn">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+           
+            <!-- Mobile menu -->
+            <div class="md:hidden hidden py-4" id="mobile-menu">
+                <div class="flex flex-col space-y-4">
+                    <a href="#inicio" class="hover:text-accent-blue transition">Inicio</a>
+                    <a href="#nosotros" class="hover:text-accent-blue transition">Quiénes Somos</a>
+                    <a href="#servicios" class="hover:text-accent-blue transition">Servicios</a>
+                    <a href="#tecnologia" class="hover:text-accent-blue transition">Tecnología 2025</a>
+                    <a href="#precios" class="hover:text-accent-blue transition">Comparativa</a>
+                    <a href="#contacto" class="hover:text-accent-blue transition">Contacto</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- Hero Section -->
+    <section id="inicio" class="gradient-bg min-h-screen flex items-center relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute top-20 left-20 w-40 h-40 rounded-full bg-accent-blue blur-3xl opacity-30"></div>
+            <div class="absolute bottom-20 right-20 w-40 h-40 rounded-full bg-accent-lime blur-3xl opacity-30"></div>
+        </div>
+       
+        <div class="container mx-auto px-4 py-20 md:py-32 relative z-10">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-12 md:mb-0">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                        Transforma tu negocio con <span class="gradient-text">Inteligencia Artificial</span> en 2025
+                    </h1>
+                    <p class="text-xl md:text-2xl mb-8 text-gray-300">
+                        Soluciones de IA de última generación para potenciar tu empresa en San Felipe y todo Chile.
+                    </p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#contacto" class="bg-accent-blue hover:bg-blue-500 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg">
+                            Solicitar Demo
+                        </a>
+                        <a href="#tecnologia" class="border-2 border-accent-blue text-accent-blue hover:bg-accent-blue hover:text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105">
+                            Ver Tecnología
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative w-full max-w-md">
+                        <div class="absolute -top-10 -left-10 w-32 h-32 rounded-full bg-accent-blue opacity-20 blur-xl"></div>
+                        <div class="absolute -bottom-10 -right-10 w-32 h-32 rounded-full bg-accent-lime opacity-20 blur-xl"></div>
+                        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80"
+                             alt="IA Aconcagua"
+                             class="rounded-xl shadow-2xl border-4 border-white/10 animate-float">
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 scroll-down">
+            <a href="#nosotros" class="text-gray-300 hover:text-white">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
+    </section>
+
+
+    <!-- About Us Section -->
+    <section id="nosotros" class="py-20 bg-gray-100 dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Quiénes <span class="gradient-text">Somos</span></h2>
+                <div class="w-20 h-1 bg-accent-blue mx-auto mb-6"></div>
+                <p class="text-lg max-w-3xl mx-auto">
+                    Líderes en desarrollo de soluciones de inteligencia artificial adaptadas a las necesidades específicas de cada cliente desde 2025.
+                </p>
+            </div>
+           
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-12 md:mb-0 md:pr-12">
+                    <div class="bg-white dark:bg-gray-700 p-8 rounded-xl shadow-lg">
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 rounded-full bg-accent-blue flex items-center justify-center mr-4">
+                                <i class="fas fa-bullseye text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">Nuestra Misión</h3>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300">
+                            Facilitar el acceso y desarrollo de Agentes de Inteligencia Artificial para integrar IA en los procesos de personas y empresas, democratizando esta tecnología en Chile y Latinoamérica.
+                        </p>
+                    </div>
+                   
+                    <div class="bg-white dark:bg-gray-700 p-8 rounded-xl shadow-lg mt-8">
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 rounded-full bg-accent-lime flex items-center justify-center mr-4">
+                                <i class="fas fa-eye text-gray-900 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">Nuestra Visión</h3>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300">
+                            Ser líderes en servicios de IA a nivel internacional, reconocidos por nuestra innovación, calidad y compromiso con el desarrollo tecnológico de nuestros clientes.
+                        </p>
+                    </div>
+
+
+                    <div class="bg-white dark:bg-gray-700 p-8 rounded-xl shadow-lg mt-8">
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-r from-accent-blue to-accent-lime flex items-center justify-center mr-4">
+                                <i class="fas fa-chart-line text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">Nuestro Impacto en 2025</h3>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300">
+                            Hemos implementado más de 150 soluciones de IA en empresas chilenas, aumentando su productividad en un promedio del 47% según nuestros estudios.
+                        </p>
+                    </div>
+                </div>
+               
+                <div class="md:w-1/2">
+                    <div class="relative overflow-visible" style="margin: 2rem;">
+    <div class="absolute -top-6 -left-6 w-full h-full border-4 border-accent-blue rounded-xl z-0"></div>
+    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+         alt="Equipo IA Aconcagua"
+         class="relative z-10 rounded-xl shadow-lg w-full">
+    <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-accent-lime rounded-full flex items-center justify-center text-gray-900 font-bold text-lg border-4 border-white dark:border-gray-800 shadow-lg z-20">
+        Desde 2025
+    </div>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Technology 2025 Section -->
+    <section id="tecnologia" class="py-20 bg-white dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Tecnología <span class="gradient-text">2025</span></h2>
+                <div class="w-20 h-1 bg-accent-blue mx-auto mb-6"></div>
+                <p class="text-lg max-w-3xl mx-auto">
+                    Implementamos las últimas innovaciones en inteligencia artificial para ofrecerte soluciones de vanguardia.
+                </p>
+            </div>
+
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- AI Feature 1 -->
+                <div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-lg ai-feature">
+                    <div class="w-16 h-16 bg-accent-blue rounded-full flex items-center justify-center mb-6 text-white text-2xl">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Modelos Multimodales</h3>
+                    <p class="text-gray-700 dark:text-gray-300">
+                        Nuestros sistemas pueden procesar simultáneamente texto, imágenes, voz y datos estructurados para ofrecer análisis más completos.
+                    </p>
+                </div>
+
+
+                <!-- AI Feature 2 -->
+                <div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-lg ai-feature">
+                    <div class="w-16 h-16 bg-accent-lime rounded-full flex items-center justify-center mb-6 text-gray-900 text-2xl">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Agentes Autónomos</h3>
+                    <p class="text-gray-700 dark:text-gray-300">
+                        Implementamos agentes de IA que pueden tomar decisiones y ejecutar tareas complejas con mínima supervisión humana.
+                    </p>
+                </div>
+
+
+                <!-- AI Feature 3 -->
+                <div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-lg ai-feature">
+                    <div class="w-16 h-16 bg-gradient-to-r from-accent-blue to-accent-lime rounded-full flex items-center justify-center mb-6 text-white text-2xl">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Seguridad Avanzada</h3>
+                    <p class="text-gray-700 dark:text-gray-300">
+                        Sistemas con cifrado cuántico y protocolos de privacidad que cumplen con los estándares internacionales más exigentes.
+                    </p>
+                </div>
+
+
+                <!-- AI Feature 4 -->
+                <div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-lg ai-feature">
+                    <div class="w-16 h-16 bg-accent-blue rounded-full flex items-center justify-center mb-6 text-white text-2xl">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Análisis Predictivo</h3>
+                    <p class="text-gray-700 dark:text-gray-300">
+                        Modelos que anticipan tendencias del mercado con un 92% de precisión, ayudándote a tomar mejores decisiones estratégicas.
+                    </p>
+                </div>
+
+
+                <!-- AI Feature 5 -->
+                <div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-lg ai-feature">
+                    <div class="w-16 h-16 bg-accent-lime rounded-full flex items-center justify-center mb-6 text-gray-900 text-2xl">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Idiomas Locales</h3>
+                    <p class="text-gray-700 dark:text-gray-300">
+                        Soporte avanzado para español chileno, incluyendo modismos regionales y jerga empresarial local.
+                    </p>
+                </div>
+
+
+                <!-- AI Feature 6 -->
+                <div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-lg ai-feature">
+                    <div class="w-16 h-16 bg-gradient-to-r from-accent-blue to-accent-lime rounded-full flex items-center justify-center mb-6 text-white text-2xl">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Integración Instantánea</h3>
+                    <p class="text-gray-700 dark:text-gray-300">
+                        Conexión con más de 500 aplicaciones empresariales en minutos, sin necesidad de desarrollo personalizado.
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="mt-16 bg-gradient-to-r from-accent-blue to-accent-lime p-8 rounded-xl shadow-lg">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-2/3 mb-6 md:mb-0">
+                        <h3 class="text-2xl font-bold text-white mb-4">¿Listo para el futuro de la IA?</h3>
+                        <p class="text-white">
+                            Agenda una demostración personalizada de nuestras soluciones y descubre cómo podemos transformar tu negocio en 2025.
+                        </p>
+                    </div>
+                    <div class="md:w-1/3 flex justify-center md:justify-end">
+                        <a href="#contacto" class="bg-white hover:bg-gray-100 text-gray-900 font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg">
+                            Agendar Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Services Section -->
+    <section id="servicios" class="py-20 bg-gray-100 dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Nuestros <span class="gradient-text">Servicios</span></h2>
+                <div class="w-20 h-1 bg-accent-blue mx-auto mb-6"></div>
+                <p class="text-lg max-w-3xl mx-auto">
+                    Ofrecemos planes escalables para adaptarnos a las necesidades de cada cliente, desde emprendedores hasta grandes empresas.
+                </p>
+            </div>
+           
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Plan Básico -->
+                <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg overflow-hidden transition-all duration-300 service-card hover:shadow-xl">
+                    <div class="bg-accent-blue text-white py-4 px-6">
+                        <h3 class="text-xl font-bold">Plan Básico</h3>
+                        <p class="opacity-90">Ideal para emprendedores</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-6">
+                            <span class="text-3xl font-bold">$15.000</span>
+                            <span class="text-gray-600 dark:text-gray-400">/mes</span>
+                        </div>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-accent-blue mr-2"></i>
+                                <span>Acceso a modelos básicos de IA</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-accent-blue mr-2"></i>
+                                <span>Soporte por correo electrónico</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-accent-blue mr-2"></i>
+                                <span>Hasta 200 consultas/mes</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-accent-blue mr-2"></i>
+                                <span>Actualizaciones mensuales</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-accent-blue mr-2"></i>
+                                <span>1 integración básica</span>
+                            </li>
+                        </ul>
+                        <a href="#contacto" class="block w-full bg-accent-blue hover:bg-blue-500 text-white text-center font-bold py-3 px-4 rounded-lg transition duration-300">
+                            Suscribirse
+                        </a>
+                    </div>
+                </div>
+               
+                <!-- Plan Persona+ -->
+                <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg overflow-hidden transition-all duration-300 service-card hover:shadow-xl transform scale-105">
+                    <div class="relative">
+                        <div class="absolute top-0 right-0 bg-accent-lime text-gray-900 px-3 py-1 text-sm font-bold">
+                            POPULAR
+                        </div>
+                        <div class="bg-accent-lime text-gray-900 py-4 px-6">
+                            <h3 class="text-xl font-bold">Persona+</h3>
+                            <p class="opacity-90">Para profesionales independientes</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-6">
+                            <span class="text-3xl font-bold">$35.000</span>
+                            <span class="text-gray-600 dark:text-gray-400">/mes</span>
+                        </div>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-accent-lime mr-2"></i>
+                                <span>Todos los beneficios del Plan Básico</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-accent-lime mr-2"></i>
+                                <span>Modelos avanzados de IA</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-accent-lime mr-2"></i>
+                                <span>Hasta 600 consultas/mes</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-accent-lime mr-2"></i>
+                                <span>Soporte prioritario</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-accent-lime mr-2"></i>
+                                <span>Integración con 2 plataformas</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-accent-lime mr-2"></i>
+                                <span>Acceso a análisis básicos</span>
+                            </li>
+                        </ul>
+                        <a href="#contacto" class="block w-full bg-accent-lime hover:bg-lime-500 text-gray-900 text-center font-bold py-3 px-4 rounded-lg transition duration-300">
+                            Suscribirse
+                        </a>
+                    </div>
+                </div>
+               
+                <!-- Plan Profesional+ -->
+                <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg overflow-hidden transition-all duration-300 service-card hover:shadow-xl">
+                    <div class="bg-accent-blue text-white py-4 px-6">
+                        <h3 class="text-xl font-bold">Profesional+</h3>
+                        <p class="opacity-90">Para pequeñas empresas</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-6">
+                            <span class="text-3xl font-bold">$120.000</span>
+                            <span class="text-gray-600 dark:text-gray-400">/mes</span>
+                        </div>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-accent-blue mr-2"></i>
+                                <span>Todos los beneficios del Persona+</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-accent-blue mr-2"></i>
+                                <span>Consultas ilimitadas</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-accent-blue mr-2"></i>
+                                <span>Integración con hasta 5 plataformas</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-accent-blue mr-2"></i>
+                                <span>Soporte 24/7</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-accent-blue mr-2"></i>
+                                <span>Entrenamiento personalizado</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-accent-blue mr-2"></i>
+                                <span>Reportes analíticos mensuales</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-accent-blue mr-2"></i>
+                                <span>Acceso a modelos premium</span>
+                            </li>
+                        </ul>
+                        <a href="#contacto" class="block w-full bg-accent-blue hover:bg-blue-500 text-white text-center font-bold py-3 px-4 rounded-lg transition duration-300">
+                            Suscribirse
+                        </a>
+                    </div>
+                </div>
+            </div>
+           
+            <!-- Additional Services -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-12">
+                <!-- Grandes Empresas -->
+                <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg overflow-hidden transition-all duration-300 service-card hover:shadow-xl">
+                    <div class="bg-gradient-to-r from-accent-blue to-accent-lime text-white py-4 px-6">
+                        <h3 class="text-xl font-bold">Grandes Empresas</h3>
+                        <p class="opacity-90">Soluciones corporativas</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-6">
+                            <span class="text-3xl font-bold">Pago por uso</span>
+                        </div>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-accent-blue mr-2"></i>
+                                <span>Soluciones completamente personalizadas</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-accent-blue mr-2"></i>
+                                <span>Integraciones complejas</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-accent-blue mr-2"></i>
+                                <span>Equipo dedicado</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-accent-blue mr-2"></i>
+                                <span>Entrenamiento in situ</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-accent-blue mr-2"></i>
+                                <span>SLA garantizado</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-accent-blue mr-2"></i>
+                                <span>Modelos exclusivos</span>
+                            </li>
+                        </ul>
+                        <a href="#contacto" class="block w-full bg-gradient-to-r from-accent-blue to-accent-lime hover:opacity-90 text-white text-center font-bold py-3 px-4 rounded-lg transition duration-300">
+                            Contactar
+                        </a>
+                    </div>
+                </div>
+               
+                <!-- Personalización Avanzada -->
+                <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg overflow-hidden transition-all duration-300 service-card hover:shadow-xl">
+                    <div class="bg-gradient-to-r from-accent-lime to-accent-blue text-gray-900 py-4 px-6">
+                        <h3 class="text-xl font-bold">Personalización Avanzada</h3>
+                        <p class="opacity-90">Desarrollo a medida</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-6">
+                            <span class="text-3xl font-bold">$60.000</span>
+                            <span class="text-gray-600 dark:text-gray-400">/hora</span>
+                        </div>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-accent-lime mr-2"></i>
+                                <span>Desarrollo de modelos específicos</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-accent-lime mr-2"></i>
+                                <span>Análisis de datos avanzado</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-accent-lime mr-2"></i>
+                                <span>Automatización de procesos</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-accent-lime mr-2"></i>
+                                <span>Chatbots inteligentes</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-accent-lime mr-2"></i>
+                                <span>Soluciones de visión por computador</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-accent-lime mr-2"></i>
+                                <span>Implementación en la nube o local</span>
+                            </li>
+                        </ul>
+                        <a href="#contacto" class="block w-full bg-gradient-to-r from-accent-lime to-accent-blue hover:opacity-90 text-gray-900 text-center font-bold py-3 px-4 rounded-lg transition duration-300">
+                            Cotizar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Price Comparison Section -->
+    <section id="precios" class="py-20 bg-white dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Comparativa de <span class="gradient-text">Precios</span></h2>
+                <div class="w-20 h-1 bg-accent-blue mx-auto mb-6"></div>
+                <p class="text-lg max-w-3xl mx-auto">
+                    Descubre por qué somos la mejor opción en servicios de IA en el mercado chileno en 2025.
+                </p>
+            </div>
+           
+            <div class="overflow-x-auto">
+                <table class="w-full bg-gray-50 dark:bg-gray-700 rounded-xl shadow-lg overflow-hidden">
+                    <thead>
+                        <tr class="bg-accent-blue text-white">
+                            <th class="py-4 px-6 text-left">Característica</th>
+                            <th class="py-4 px-6 text-center">IA Aconcagua</th>
+                            <th class="py-4 px-6 text-center">Competidor A</th>
+                            <th class="py-4 px-6 text-center">Competidor B</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200 dark:divide-gray-600">
+                        <tr class="hover:bg-gray-100 dark:hover:bg-gray-600 transition">
+                            <td class="py-4 px-6 font-medium">Precio Plan Básico</td>
+                            <td class="py-4 px-6 text-center font-bold text-accent-blue">$15.000/mes</td>
+                            <td class="py-4 px-6 text-center">$20.000/mes</td>
+                            <td class="py-4 px-6 text-center">$23.000/mes</td>
+                        </tr>
+                        <tr class="hover:bg-gray-100 dark:hover:bg-gray-600 transition">
+                            <td class="py-4 px-6 font-medium">Consultas/mes (Básico)</td>
+                            <td class="py-4 px-6 text-center font-bold text-accent-blue">200</td>
+                            <td class="py-4 px-6 text-center">100</td>
+                            <td class="py-4 px-6 text-center">150</td>
+                        </tr>
+                        <tr class="hover:bg-gray-100 dark:hover:bg-gray-600 transition">
+                            <td class="py-4 px-6 font-medium">Soporte</td>
+                            <td class="py-4 px-6 text-center font-bold text-accent-blue">24/7 en planes altos</td>
+                            <td class="py-4 px-6 text-center">Horario de oficina</td>
+                            <td class="py-4 px-6 text-center">Solo por email</td>
+                        </tr>
+                        <tr class="hover:bg-gray-100 dark:hover:bg-gray-600 transition">
+                            <td class="py-4 px-6 font-medium">Personalización</td>
+                            <td class="py-4 px-6 text-center font-bold text-accent-blue">Total</td>
+                            <td class="py-4 px-6 text-center">Limitada</td>
+                            <td class="py-4 px-6 text-center">No disponible</td>
+                        </tr>
+                        <tr class="hover:bg-gray-100 dark:hover:bg-gray-600 transition">
+                            <td class="py-4 px-6 font-medium">Integraciones</td>
+                            <td class="py-4 px-6 text-center font-bold text-accent-blue">Ilimitadas</td>
+                            <td class="py-4 px-6 text-center">Hasta 3</td>
+                            <td class="py-4 px-6 text-center">1</td>
+                        </tr>
+                        <tr class="hover:bg-gray-100 dark:hover:bg-gray-600 transition">
+                            <td class="py-4 px-6 font-medium">Modelos disponibles</td>
+                            <td class="py-4 px-6 text-center font-bold text-accent-blue">25+</td>
+                            <td class="py-4 px-6 text-center">8</td>
+                            <td class="py-4 px-6 text-center">5</td>
+                        </tr>
+                        <tr class="hover:bg-gray-100 dark:hover:bg-gray-600 transition">
+                            <td class="py-4 px-6 font-medium">Tecnología 2025</td>
+                            <td class="py-4 px-6 text-center font-bold text-accent-blue">Totalmente actualizado</td>
+                            <td class="py-4 px-6 text-center">Parcialmente actualizado</td>
+                            <td class="py-4 px-6 text-center">Tecnología 2025</td>
+                        </tr>
+                        <tr class="hover:bg-gray-100 dark:hover:bg-gray-600 transition">
+                            <td class="py-4 px-6 font-medium">Ubicación</td>
+                            <td class="py-4 px-6 text-center font-bold text-accent-blue">San Felipe, Chile</td>
+                            <td class="py-4 px-6 text-center">Extranjero</td>
+                            <td class="py-4 px-6 text-center">Extranjero</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+           
+            <div class="mt-12 text-center">
+                <a href="#contacto" class="inline-block bg-accent-blue hover:bg-blue-500 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg">
+                    ¡Quiero ser parte de IA Aconcagua!
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Contact Section -->
+    <section id="contacto" class="py-20 bg-gray-100 dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Contácta<span class="gradient-text">nos</span></h2>
+                <div class="w-20 h-1 bg-accent-blue mx-auto mb-6"></div>
+                <p class="text-lg max-w-3xl mx-auto">
+                    Estamos aquí para ayudarte a integrar la inteligencia artificial en tu negocio en 2025.
+                </p>
+            </div>
+           
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-1/2">
+                    <form class="bg-white dark:bg-gray-700 p-8 rounded-xl shadow-lg">
+                        <div class="mb-6">
+                            <label for="name" class="block mb-2 font-medium">Nombre</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-accent-blue dark:bg-gray-700">
+                        </div>
+                        <div class="mb-6">
+                            <label for="email" class="block mb-2 font-medium">Correo electrónico</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-accent-blue dark:bg-gray-700">
+                        </div>
+                        <div class="mb-6">
+                            <label for="phone" class="block mb-2 font-medium">Teléfono (opcional)</label>
+                            <input type="tel" id="phone" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-accent-blue dark:bg-gray-700">
+                        </div>
+                        <div class="mb-6">
+                            <label for="service" class="block mb-2 font-medium">Servicio de interés</label>
+                            <select id="service" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-accent-blue dark:bg-gray-700">
+                                <option value="">Selecciona una opción</option>
+                                <option value="basico">Plan Básico</option>
+                                <option value="persona">Persona+</option>
+                                <option value="profesional">Profesional+</option>
+                                <option value="empresa">Grandes Empresas</option>
+                                <option value="personalizado">Personalización Avanzada</option>
+                                <option value="tecnologia">Tecnología 2025</option>
+                            </select>
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block mb-2 font-medium">Mensaje</label>
+                            <textarea id="message" rows="5" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-accent-blue dark:bg-gray-700"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-accent-blue hover:bg-blue-500 text-white font-bold py-3 px-4 rounded-lg transition duration-300">
+                            Enviar Mensaje
+                        </button>
+                    </form>
+                </div>
+               
+                <div class="lg:w-1/2">
+                    <div class="bg-white dark:bg-gray-700 p-8 rounded-xl shadow-lg h-full">
+                        <h3 class="text-2xl font-bold mb-6">Información de <span class="gradient-text">Contacto</span></h3>
+                       
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full bg-accent-blue flex items-center justify-center mr-4 mt-1">
+                                    <i class="fas fa-map-marker-alt text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Ubicación</h4>
+                                    <p class="text-gray-700 dark:text-gray-300">San Felipe, Región de Valparaíso, Chile</p>
+                                </div>
+                            </div>
+                           
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full bg-accent-blue flex items-center justify-center mr-4 mt-1">
+                                    <i class="fas fa-phone-alt text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Teléfono</h4>
+                                    <p class="text-gray-700 dark:text-gray-300">+56 9 5050 1488</p>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">Lunes a Viernes de 9:00 a 18:00 hrs</p>
+                                </div>
+                            </div>
+                           
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full bg-accent-blue flex items-center justify-center mr-4 mt-1">
+                                    <i class="fas fa-envelope text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Correo electrónico</h4>
+                                    <p class="text-gray-700 dark:text-gray-300">contacto@iaaconcagua.cl</p>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">Respuesta en menos de 24 horas</p>
+                                </div>
+                            </div>
+                           
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full bg-accent-blue flex items-center justify-center mr-4 mt-1">
+                                    <i class="fas fa-globe text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Sitio web</h4>
+                                    <p class="text-gray-700 dark:text-gray-300">iaaconcagua.cl</p>
+                                </div>
+                            </div>
+                        </div>
+                       
+                        <div class="mt-12">
+                            <h4 class="font-bold mb-4">Síguenos en redes sociales</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-600 flex items-center justify-center hover:bg-accent-blue hover:text-white transition">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-600 flex items-center justify-center hover:bg-accent-blue hover:text-white transition">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-600 flex items-center justify-center hover:bg-accent-blue hover:text-white transition">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="https://www.instagram.com/" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-600 flex items-center justify-center hover:bg-accent-blue hover:text-white transition">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="https://www.instagram.com/" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-600 flex items-center justify-center hover:bg-accent-blue hover:text-white transition">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="logo-container">
+                            <img src="https://i.postimg.cc/qvzrrDB7/logo.jpg" alt="IA Aconcagua Logo" class="logo-img">
+                        </div>
+                        <span class="text-xl font-bold">IA <span class="gradient-text">Aconcagua</span></span>
+                    </div>
+                    <p class="mb-4">
+                        Líderes en servicios de inteligencia artificial personalizados en Chile desde 2025.
+                    </p>
+                    <p>
+                        <i class="fas fa-map-marker-alt mr-2"></i> San Felipe, Región de Valparaíso
+                    </p>
+                </div>
+               
+                <div>
+                    <h4 class="text-lg font-bold mb-4 text-white">Servicios</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#servicios" class="hover:text-accent-blue transition">Plan Básico</a></li>
+                        <li><a href="#servicios" class="hover:text-accent-blue transition">Persona+</a></li>
+                        <li><a href="#servicios" class="hover:text-accent-blue transition">Profesional+</a></li>
+                        <li><a href="#servicios" class="hover:text-accent-blue transition">Grandes Empresas</a></li>
+                        <li><a href="#servicios" class="hover:text-accent-blue transition">Personalización</a></li>
+                        <li><a href="#tecnologia" class="hover:text-accent-blue transition">Tecnología 2025</a></li>
+                    </ul>
+                </div>
+               
+                <div>
+                    <h4 class="text-lg font-bold mb-4 text-white">Empresa</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#nosotros" class="hover:text-accent-blue transition">Quiénes Somos</a></li>
+                        <li><a href="#nosotros" class="hover:text-accent-blue transition">Misión y Visión</a></li>
+                        <li><a href="#precios" class="hover:text-accent-blue transition">Comparativa</a></li>
+                        <li><a href="#" class="hover:text-accent-blue transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-accent-blue transition">Trabaja con Nosotros</a></li>
+                    </ul>
+                </div>
+               
+                <div>
+                    <h4 class="text-lg font-bold mb-4 text-white">Legal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-accent-blue transition">Términos y Condiciones</a></li>
+                        <li><a href="#" class="hover:text-accent-blue transition">Política de Privacidad</a></li>
+                        <li><a href="#" class="hover:text-accent-blue transition">Aviso Legal</a></li>
+                        <li><a href="#" class="hover:text-accent-blue transition">Cookies</a></li>
+                        <li><a href="#" class="hover:text-accent-blue transition">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+           
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p>© 2025 IA Aconcagua. Todos los derechos reservados.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-accent-blue transition"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="hover:text-accent-blue transition"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="hover:text-accent-blue transition"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="hover:text-accent-blue transition"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Back to Top Button -->
+    <a href="#inicio" id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-accent-blue text-white rounded-full flex items-center justify-center shadow-lg hover:bg-blue-500 transition duration-300 hidden">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+
+    <script>
+        // Toggle dark/light mode
+        const toggle = document.getElementById('toggle');
+        const html = document.querySelector('html');
+       
+        // Check for saved user preference, if any, on load of the website
+        if (localStorage.getItem('theme') === 'light') {
+            html.classList.remove('dark');
+            toggle.checked = false;
+        } else {
+            html.classList.add('dark');
+            toggle.checked = true;
+        }
+       
+        toggle.addEventListener('change', function() {
+            if (this.checked) {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+       
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+       
+        menuBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+       
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+       
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('hidden');
+            } else {
+                backToTopButton.classList.add('hidden');
+            }
+        });
+       
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+               
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+               
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                   
+                    // Close mobile menu if open
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+       
+        // Form submission (simulated)
+        const form = document.querySelector('form');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.');
+                form.reset();
+            });
+        }
+       
+        // Animate elements when they come into view
+        const animateOnScroll = function() {
+            const elements = document.querySelectorAll('.service-card, table, form, [class*="animate-"], .ai-feature');
+           
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+               
+                if (elementPosition < windowHeight - 100) {
+                    element.classList.add('animate__animated', 'animate__fadeInUp');
+                }
+            });
+        };
+       
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+
+
+        // Current year update
+        document.addEventListener('DOMContentLoaded', function() {
+            const yearElements = document.querySelectorAll('.current-year');
+            yearElements.forEach(el => {
+                el.textContent = new Date().getFullYear();
+            });
+        });
+    </script>
+</body>
+</html>
+
+
